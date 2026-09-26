@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusSOS</title>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        header {
+            background: #101828;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #ff4d5a;
+        }
+
+        .badge {
+            background: #243047;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 55px 20px 35px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            color: #e63946;
+        }
+
+        .hero p {
+            color: #667085;
+            font-size: 17px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .emergency {
+            background: #fff1f2;
+            border: 1px solid #fecdd3;
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .emergency h2 {
+            color: #d92d20;
+            margin-bottom: 8px;
+        }
+
+        .emergency p {
+            color: #667085;
+            margin-bottom: 15px;
+        }
+
+        .emergency button {
+            background: #e63946;
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .section-title {
+            margin: 30px 0 15px;
+            font-size: 22px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #eaecf0;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(16, 24, 40, 0.08);
+        }
+
+        .icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            margin-bottom: 7px;
+        }
+
+        .card p {
+            color: #667085;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .contacts {
+            background: #101828;
+            color: white;
+            padding: 25px;
+            border-radius: 16px;
+            margin-top: 25px;
+        }
+
+        .contacts p {
+            color: #d0d5dd;
+            margin-top: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #98a2b3;
+            font-size: 13px;
+        }
+
+        @media (max-width: 650px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    section {
+    margin-bottom: 30px;
+}
+
+button {
+    transition: 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+.contact-list {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.contact-list button {
+    padding: 14px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🆘 Campus<span>SOS</span></div>
+    <div class="badge">● Campus Safety</div>
+</header>
+
+<section class="hero">
+    <h1>Need <span>Help?</span></h1>
+    <p>Get the right support when it matters most.</p>
+</section>
+
+<div class="container">
+
+    <div class="emergency">
+        <h2>🚨 Emergency?</h2>
+        <p>If you are in immediate danger, get help quickly.</p>
+        <button onclick="showEmergency()">GET EMERGENCY HELP</button>
+    </div>
+
+    <div id="emergencyPanel" style="display:none; margin-bottom:25px;">
+
+    <div class="emergency">
+        <h2>🚨 What kind of help do you need?</h2>
+        <p>Select your situation to get immediate guidance.</p>
+
+        <button onclick="showGuidance('medical')">
+            🚑 Medical
+        </button>
+
+        <button onclick="showGuidance('safety')" style="margin-left:10px;">
+            🚨 Safety
+        </button>
+
+        <button onclick="showGuidance('other')" style="margin-left:10px;">
+            🆘 Other
+        </button>
+    </div>
+
+    <div id="guidance" class="contacts" style="display:none;">
+
+        <h3 id="guidanceTitle"></h3>
+        <p id="guidanceText"></p>
+
+    </div>
+
+</div>
+<h2 class="section-title">How can we help?</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">🚑</div>
+            <h3>Medical Emergency</h3>
+            <p>Get immediate guidance and find appropriate campus support.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🚨</div>
+            <h3>Safety Concern</h3>
+            <p>Report a safety concern and receive situation-specific guidance.</p>
+        </div>
+
+        <div class="card" onclick="showReportForm()">
+    <div class="icon">🏫</div>
+    <h3>Campus Issue</h3>
+    <p>Report infrastructure, electrical, sanitation or other campus issues.</p>
+</div>
+
+     <div class="card" onclick="showLostFound()">
+    <div class="icon">🎒</div>
+    <h3>Lost & Found</h3>
+    <p>Report lost items or help others find their belongings.</p>
+</div>   
+
+    </div>
+    <div id="reportForm" style="display:none; margin-top:25px;">
+
+    <div class="contacts">
+        <h2>📝 Report a Campus Issue</h2>
+
+        <p style="margin-top:10px;">
+            Help us make your campus safer and better.
+        </p>
+
+        <br>
+
+        <label>Issue Type</label><br><br>
+
+        <select id="issueType"
+                style="width:100%; padding:12px; border-radius:8px;">
+            <option>Electrical</option>
+            <option>Infrastructure</option>
+            <option>Sanitation</option>
+            <option>Water</option>
+            <option>Other</option>
+        </select>
+
+        <br><br>
+
+        <label>Location</label><br><br>
+
+        <input id="location"
+               type="text"
+               placeholder="Example: Block B, 2nd Floor"
+               style="width:100%; padding:12px; border-radius:8px; border:1px solid #ddd;">
+
+        <br><br>
+
+        <label>Description</label><br><br>
+
+        <textarea id="description"
+                  placeholder="Describe the issue..."
+                  style="width:100%; padding:12px; border-radius:8px; border:1px solid #ddd; min-height:100px;"></textarea>
+
+        <br><br>
+
+        <button onclick="submitReport()"
+                style="background:#e63946; color:white; border:none; padding:13px 25px; border-radius:10px; cursor:pointer;">
+            SUBMIT REPORT
+        </button>
+
+        <div id="reportResult" style="margin-top:20px;"></div>
+
+    </div>
+
+<div class="contacts" style="margin-top:25px;">
+
+    <h3>📋 Track Your Report</h3>
+
+    <p>Enter your report ID to check its status.</p>
+
+    <br>
+
+    <input
+        id="trackId"
+        type="text"
+        placeholder="Example: CS0001"
+        style="width:100%; padding:12px; border-radius:8px; border:1px solid #ddd;"
+    >
+
+    <br><br>
+
+    <button onclick="trackReport()">
+    CHECK STATUS
+</button>
+
+    <div id="trackingResult" style="margin-top:20px;"></div>
+
+</div>
+</div>
+    <div class="contacts">
+<section id="lostFoundSection" style="display:none; margin-top:40px;">
+
+    <h2>🎒 Lost & Found</h2>
+
+    <p>Report a lost item or an item you found on campus.</p>
+
+    <input
+        type="text"
+        id="itemName"
+        placeholder="Item name (e.g. Black Wallet)"
+    >
+
+    <input
+        type="text"
+        id="itemLocation"
+        placeholder="Where was it lost/found?"
+    >
+
+    <select id="itemType">
+        <option value="Lost">I Lost This</option>
+        <option value="Found">I Found This</option>
+    </select>
+
+    <textarea
+        id="itemDescription"
+        placeholder="Describe the item..."
+    ></textarea>
+
+    <button onclick="submitLostFound()">SUBMIT</button>
+    <button onclick="loadLostFound()">VIEW REPORTED ITEMS</button>
+
+    <div id="lostFoundList"></div>
+    <div id="lostFoundResult"></div>
+
+</section>
+        <h3>📞 Emergency Contacts</h3>
+
+<div class="contact-list">
+
+    <button onclick="showContactInfo('security')">
+        🚨 Campus Security
+    </button>
+
+    <button onclick="showContactInfo('medical')">
+        🏥 Medical Centre
+    </button>
+
+    <button onclick="showContactInfo('support')">
+        👤 Student Support
+    </button>
+
+</div>
+
+<div id="contactInfo"></div>
+    </div>
+
+</div>
+
+<footer>
+    CampusSOS • Built for safer campuses
+</footer>
+<script>
+
+function showEmergency() {
+    document.getElementById("emergencyPanel").style.display = "block";
+}
+function showContactInfo(type) {
+
+    const contactInfo = document.getElementById("contactInfo");
+
+    if (type === "security") {
+
+        contactInfo.innerHTML =
+            "<h4>🚨 Campus Security</h4>" +
+            "<p>Contact your campus security office for immediate safety concerns.</p>";
+
+    } else if (type === "medical") {
+
+        contactInfo.innerHTML =
+            "<h4>🏥 Medical Centre</h4>" +
+            "<p>Contact the campus medical centre for medical assistance.</p>";
+
+    } else {
+
+        contactInfo.innerHTML =
+            "<h4>👤 Student Support</h4>" +
+            "<p>Contact student support for guidance and campus-related assistance.</p>";
+    }
+}
+function showGuidance(type) {
+
+    const title = document.getElementById("guidanceTitle");
+    const text = document.getElementById("guidanceText");
+
+    if (type === "medical") {
+
+        title.innerHTML = "🚑 Medical Emergency";
+
+        text.innerHTML =
+            "• Move to a safe location.<br>" +
+            "• Contact campus medical support.<br>" +
+            "• Share your location if possible.<br>" +
+            "• Stay with the affected person until help arrives.";
+
+    } else if (type === "safety") {
+
+        title.innerHTML = "🚨 Safety Concern";
+
+        text.innerHTML =
+            "• Move to a populated and safe area.<br>" +
+            "• Contact campus security.<br>" +
+            "• Share your location if possible.<br>" +
+            "• Report the incident when it is safe to do so.";
+
+    } else {
+
+        title.innerHTML = "🆘 Other Emergency";
+
+        text.innerHTML =
+            "• Move to a safe location.<br>" +
+            "• Contact appropriate campus support.<br>" +
+            "• Share important details with the responder.<br>" +
+            "• Follow instructions from campus authorities.";
+    }
+
+    document.getElementById("guidance").style.display = "block";
+}
+
+
+function showReportForm() {
+
+    document.getElementById("reportForm").style.display = "block";
+
+    document.getElementById("reportForm").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+function showLostFound() {
+    document.getElementById("lostFoundSection").style.display = "block";
+    document.getElementById("lostFoundSection").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+async function submitLostFound() {
+    const itemName = document.getElementById("itemName").value.trim();
+    const itemLocation = document.getElementById("itemLocation").value.trim();
+    const itemType = document.getElementById("itemType").value;
+    const itemDescription = document.getElementById("itemDescription").value.trim();
+
+    if (itemName === "" || itemLocation === "" || itemDescription === "") {
+        alert("Please fill all the details.");
+        return;
+    }
+
+    try {
+        const response = await fetch("/submit_lost_found", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                item_name: itemName,
+                location: itemLocation,
+                item_type: itemType,
+                description: itemDescription
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            document.getElementById("lostFoundResult").innerHTML =
+                "<h3>✅ Lost & Found Report Submitted!</h3>" +
+"<p>Your report has been saved successfully.</p>" +
+"<p>Lost & Found ID: <strong>LF" +
+                String(result.item_id).padStart(4, "0") +
+                "</strong></p>" +
+                "<p>Status: 🟡 Submitted</p>";
+
+            document.getElementById("itemName").value = "";
+            document.getElementById("itemLocation").value = "";
+            document.getElementById("itemDescription").value = "";
+        }
+
+    } catch (error) {
+        alert("Could not connect to the server.");
+        console.error(error);
+    }
+}
+async function loadLostFound() {
+    try {
+        const response = await fetch("/lost_found");
+        const result = await response.json();
+
+        if (!result.success || result.items.length === 0) {
+            document.getElementById("lostFoundList").innerHTML =
+                "<p>No Lost & Found items reported yet.</p>";
+            return;
+        }
+
+        let html = "<h3>📋 Reported Items</h3>";
+
+        result.items.forEach(function(item) {
+            html +=
+                "<div style='margin:15px 0; padding:15px; border:1px solid #ddd; border-radius:10px;'>" +
+                "<p><strong>ID:</strong> LF" +
+                String(item.id).padStart(4, "0") +
+                "</p>" +
+                "<p><strong>Type:</strong> " +
+                item.item_type +
+                "</p>" +
+                "<p><strong>Item:</strong> " +
+                item.item_name +
+                "</p>" +
+                "<p><strong>Location:</strong> " +
+                item.location +
+                "</p>" +
+                "<p><strong>Description:</strong> " +
+                item.description +
+                "</p>" +
+                "</div>";
+        });
+
+        document.getElementById("lostFoundList").innerHTML = html;
+
+    } catch (error) {
+        document.getElementById("lostFoundList").innerHTML =
+            "<p>❌ Could not load reported items.</p>";
+        console.error(error);
+    }
+}
+async function submitReport() {
+
+    const issue = document.getElementById("issueType").value;
+    const location = document.getElementById("location").value.trim();
+    const description = document.getElementById("description").value.trim();
+
+    if (location === "" || description === "") {
+
+        alert("Please enter the location and describe the issue.");
+
+        return;
+    }
+
+    try {
+
+        const response = await fetch("/submit_report", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                issue_type: issue,
+                location: location,
+                description: description
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+
+            document.getElementById("reportResult").innerHTML =
+                "<h3>✅ Report Submitted</h3>" +
+                "<p>Report ID: <strong>CS" +
+                String(result.report_id).padStart(4, "0") +
+                "</strong></p>" +
+                "<p>Status: 🟡 " +
+                result.status +
+                "</p>";
+        }
+
+    } catch (error) {
+
+        alert("Could not connect to the server.");
+
+        console.error(error);
+    }
+}
+
+
+async function trackReport() {
+
+    const input = document.getElementById("trackId").value.trim();
+
+    if (input === "") {
+
+        alert("Please enter your report ID.");
+
+        return;
+    }
+
+    const reportId = input.replace(/^CS/i, "");
+
+    try {
+
+        const response =
+            await fetch("/track_report/" + reportId);
+
+        const result = await response.json();
+
+        if (!result.success) {
+
+            document.getElementById("trackingResult").innerHTML =
+                "<p style='color:#d92d20;'>❌ Report not found.</p>";
+
+            return;
+        }
+
+        document.getElementById("trackingResult").innerHTML =
+            "<h3>📋 Report Found</h3>" +
+            "<p><strong>Issue:</strong> " +
+            result.issue_type +
+            "</p>" +
+            "<p><strong>Location:</strong> " +
+            result.location +
+            "</p>" +
+            "<p><strong>Status:</strong> 🟡 " +
+            result.status +
+            "</p>";
+
+    } catch (error) {
+
+        document.getElementById("trackingResult").innerHTML =
+            "<p style='color:#d92d20;'>❌ Could not connect to the server.</p>";
+
+        console.error(error);
+    }
+}
+
+</script>
+ 
+</body>
+</html>
