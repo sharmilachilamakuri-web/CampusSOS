@@ -89,3 +89,21 @@ CampusSOS aims to provide students with a simple central place for campus safety
 CampusSOS uses a local SQLite database for storing reports and Lost & Found submissions.
 
 The local database file and virtual environment are excluded from Git using `.gitignore`.
+The local database file and virtual environment are excluded from Git using `.gitignore`.
+## 📸 Screenshots
+
+### 🏠 CampusSOS Home
+
+![CampusSOS Home](screenshots/home.png)
+
+### 🏫 Campus Issue Reporting
+
+![Campus Issue](screenshots/campus-issue.png)
+
+### 🎒 Lost & Found
+
+![Lost & Found](screenshots/lost-found.png)
+
+### 🚨 Emergency Help & Contacts
+
+![Emergency Help](screenshots/emergency.png)
