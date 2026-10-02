@@ -234,6 +234,8 @@ button:hover {
         <button onclick="showGuidance('other')" style="margin-left:10px;">
             🆘 Other
         </button>
+    <div id="emergencyGuidance"></div>
+
     </div>
 
     <div id="guidance" class="contacts" style="display:none;">
@@ -440,43 +442,32 @@ function showContactInfo(type) {
 }
 function showGuidance(type) {
 
-    const title = document.getElementById("guidanceTitle");
-    const text = document.getElementById("guidanceText");
+    const guidance = {
+        medical: `
+            <h3>Medical Emergency Guidance</h3>
+            <p>1. Move to a safe place.</p>
+            <p>2. Contact your campus medical centre or local emergency services.</p>
+            <p>3. Share your location with someone who can help.</p>
+            <p>4. Stay with the affected person if it is safe.</p>
+        `,
+        safety: `
+            <h3>Safety Concern Guidance</h3>
+            <p>1. Move to a safe, populated area.</p>
+            <p>2. Contact campus security or a trusted authority.</p>
+            <p>3. Share your location with someone you trust.</p>
+            <p>4. Report the concern when you are safe.</p>
+        `,
+        other: `
+            <h3>Emergency Guidance</h3>
+            <p>1. Move to a safe place.</p>
+            <p>2. Contact appropriate campus support.</p>
+            <p>3. Share important details with the people helping you.</p>
+        `
+    };
 
-    if (type === "medical") {
-
-        title.innerHTML = "🚑 Medical Emergency";
-
-        text.innerHTML =
-            "• Move to a safe location.<br>" +
-            "• Contact campus medical support.<br>" +
-            "• Share your location if possible.<br>" +
-            "• Stay with the affected person until help arrives.";
-
-    } else if (type === "safety") {
-
-        title.innerHTML = "🚨 Safety Concern";
-
-        text.innerHTML =
-            "• Move to a populated and safe area.<br>" +
-            "• Contact campus security.<br>" +
-            "• Share your location if possible.<br>" +
-            "• Report the incident when it is safe to do so.";
-
-    } else {
-
-        title.innerHTML = "🆘 Other Emergency";
-
-        text.innerHTML =
-            "• Move to a safe location.<br>" +
-            "• Contact appropriate campus support.<br>" +
-            "• Share important details with the responder.<br>" +
-            "• Follow instructions from campus authorities.";
-    }
-
-    document.getElementById("guidance").style.display = "block";
+    document.getElementById("emergencyGuidance").innerHTML =
+        guidance[type] || guidance.other;
 }
-
 
 function showReportForm() {
 
@@ -681,6 +672,7 @@ async function trackReport() {
         console.error(error);
     }
 }
+
 
 </script>
  
